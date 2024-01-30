@@ -1,9 +1,11 @@
 package com.spring1.springapp1.service;
 
-import com.spring1.springapp1.dto.UsersDto;
+import com.spring1.springapp1.dto.UserDto;
 
 import java.util.List;
 
-public interface UsersService {
-    List<UsersDto> findAllUsers();
+//Provides repository methods that can be used when need to
+//Add a layer of abstraction: only care about what a method does, not how it does.
+public interface UserService {
+    List<UserDto> findAllUsers();
 }

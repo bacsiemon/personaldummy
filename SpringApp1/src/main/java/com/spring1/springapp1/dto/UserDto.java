@@ -1,18 +1,26 @@
 package com.spring1.springapp1.dto;
 
-public class UsersDto {
+
+//DTO helps to encapsulate data, allowing devs to return specific fields/data
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class UserDto {
     public String username;
     public String password;
     public String fullName;
-    public boolean role;
+    public boolean admin;
 
-    public UsersDto() {
+    public UserDto() {
     }
 
-    public UsersDto(String username, String password, String fullName, boolean role) {
+    public UserDto(String username, String password, String fullName, boolean admin) {
         this.username = username;
         this.password = password;
         this.fullName = fullName;
-        this.role = role;
+        this.admin = admin;
     }
 }

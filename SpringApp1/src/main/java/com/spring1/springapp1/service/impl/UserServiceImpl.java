@@ -1,26 +1,39 @@
 package com.spring1.springapp1.service.impl;
 
-import com.spring1.springapp1.dto.UsersDto;
-import com.spring1.springapp1.models.Users;
-import com.spring1.springapp1.repositories.UsersRepository;
-import com.spring1.springapp1.service.UsersService;
+import com.spring1.springapp1.dto.UserDto;
+import com.spring1.springapp1.models.User;
+import com.spring1.springapp1.repositories.UserRepository;
+import com.spring1.springapp1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class UsersServiceImpl implements UsersService {
 
-    private UsersRepository usersRepository;
+// Uses to implement the codes required for an interface
+public class UserServiceImpl implements UserService {
 
-    //@Autowired
-    public UsersServiceImpl(UsersRepository usersRepository) {
-        this.usersRepository = usersRepository;
+    private UserRepository userRepository;
+
+    //Usually Spring will automatically provide "@Autowired" annotation
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
-    public List<UsersDto> findAllUsers() {
-        List<Users>
+    public List<UserDto> findAllUsers() {
+        List<User> users = userRepository.findAll(); // pull data from repository
+        return users.stream().map((user) -> mapToUserDto(user)).collect(Collectors.toList()); // "for" loop
     }
 
-
+    private UserDto mapToUserDto(User user){
+        // Add "@Builder" annotation into Dto class if "builder()" method isn't available.
+        UserDto dto = UserDto.builder()
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .fullName(user.getFullName())
+                .admin(user.isAdmin())
+                .build();
+        return dto;
+    }
 }

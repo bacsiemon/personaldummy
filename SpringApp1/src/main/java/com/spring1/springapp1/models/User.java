@@ -3,30 +3,29 @@ package com.spring1.springapp1.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+//Lombok's annotations
+//Lombok will provide necessary methods based on specified annotations
 @Data
-@Builder
-@Entity
-@Table(name = "Users")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder // This annotation must be added on top of model
+@Entity // Will require to use "@Id" to specify an attribute as primary key
+@Table(name = "tblUsers")
 
-public class Users {
+public class User {
     @Id
+    // Can use "@GeneratedValue(strategy = GenerationType.IDENTITY)" annotation to automatically generate an ID
     public String username;
     public String password;
     public String fullName;
-    public boolean role;
+    public boolean admin;
 
-    public Users() {
-    }
 
-    public Users(String username, String password, String fullName, boolean role) {
-        this.username = username;
-        this.password = password;
-        this.fullName = fullName;
-        this.role = role;
-    }
 
     
 }
