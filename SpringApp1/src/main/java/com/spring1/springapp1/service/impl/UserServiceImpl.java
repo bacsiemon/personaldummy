@@ -4,12 +4,12 @@ import com.spring1.springapp1.dto.UserDto;
 import com.spring1.springapp1.models.User;
 import com.spring1.springapp1.repositories.UserRepository;
 import com.spring1.springapp1.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+@Service
 // Uses to implement the codes required for an interface
 public class UserServiceImpl implements UserService {
 
